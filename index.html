@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our 10 Years ❤️</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;font-family:Montserrat,sans-serif;background:#16070d;color:#fff}
+body{overflow-x:hidden}
+:root{--rose:#d9899d;--gold:#e8c58b;--wine:#5b182d;--cream:#fff4ed}
+canvas{position:fixed;inset:0;pointer-events:none;z-index:3}
+.bg{position:fixed;inset:0;z-index:-2;background:
+radial-gradient(circle at 20% 20%,rgba(180,48,88,.30),transparent 30%),
+radial-gradient(circle at 80% 70%,rgba(217,137,157,.16),transparent 35%),
+linear-gradient(135deg,#16070d,#2b0c18 48%,#10050a)}
+.glow{position:fixed;width:45vw;height:45vw;border-radius:50%;filter:blur(70px);opacity:.18;z-index:-1;background:#b52c58;animation:drift 12s ease-in-out infinite alternate}
+.glow.g2{right:-15vw;bottom:-15vw;background:#e8c58b;animation-delay:-5s}
+@keyframes drift{to{transform:translate(8vw,-5vh) scale(1.15)}}
+.screen{min-height:100vh;display:none;align-items:center;justify-content:center;padding:28px 18px;position:relative}
+.screen.active{display:flex;animation:fade .9s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.card{width:min(980px,96vw);text-align:center;padding:42px 28px;border:1px solid rgba(255,255,255,.13);border-radius:28px;background:rgba(255,255,255,.055);backdrop-filter:blur(16px);box-shadow:0 25px 80px rgba(0,0,0,.35)}
+.eyebrow{letter-spacing:5px;text-transform:uppercase;font-size:11px;color:var(--gold);margin-bottom:12px}
+h1{font-family:'Great Vibes',cursive;font-size:clamp(55px,10vw,105px);font-weight:400;line-height:.9;margin:8px 0 18px;color:#fff}
+h2{font-family:'Cormorant Garamond',serif;font-size:clamp(35px,6vw,62px);font-weight:500;margin:8px 0 16px}
+.lead{font-family:'Cormorant Garamond',serif;font-size:clamp(21px,3vw,28px);line-height:1.45;color:#f8dedb;max-width:720px;margin:0 auto 26px}
+.date{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--gold);margin-bottom:28px}
+.btn{border:1px solid rgba(232,197,139,.65);background:linear-gradient(135deg,#8c2948,#5b182d);color:white;padding:14px 25px;border-radius:999px;font:600 12px Montserrat;letter-spacing:1.4px;text-transform:uppercase;cursor:pointer;transition:.25s;box-shadow:0 8px 25px rgba(91,24,45,.4)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(217,137,157,.25)}
+.btn.secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.25)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.controls{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.heart{font-size:30px;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{transform:scale(1.18)}}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin:25px auto;max-width:850px}
+.photo{height:240px;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,rgba(217,137,157,.22),rgba(91,24,45,.3));border:1px solid rgba(255,255,255,.1);position:relative}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo .ph{height:100%;display:grid;place-items:center;padding:18px;color:#f3cdd3;font-family:'Cormorant Garamond';font-size:20px}
+.quote{font-family:'Great Vibes';font-size:32px;color:#f2c6ce;margin:22px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:28px auto;max-width:850px}
+.plan{padding:22px;border:1px solid rgba(232,197,139,.18);border-radius:20px;background:rgba(0,0,0,.13)}
+.plan .icon{font-size:30px}.plan h3{font-family:'Cormorant Garamond';font-size:26px;margin:10px 0 6px}.plan p{color:#e8cdd0;font-size:13px;line-height:1.65;margin:0}
+.letter{max-width:760px;margin:25px auto;text-align:left;padding:30px 32px;border-radius:20px;background:rgba(255,244,237,.055);border:1px solid rgba(255,255,255,.11);font-family:'Cormorant Garamond';font-size:22px;line-height:1.65;color:#ffe8e1;white-space:pre-wrap}
+.signature{font-family:'Great Vibes';font-size:38px;text-align:right;color:var(--gold);margin-top:15px}
+.final{font-family:'Cormorant Garamond';font-size:28px;color:#fff0eb}
+.topbar{position:fixed;top:15px;right:15px;z-index:10;display:flex;gap:8px}
+.small{font-size:10px;padding:9px 13px}
+.edit-panel{position:fixed;z-index:20;inset:0;background:rgba(9,2,6,.93);display:none;overflow:auto;padding:25px}
+.edit-panel.open{display:block}
+.editor{max-width:1000px;margin:0 auto;background:#1d0b12;border:1px solid #633044;border-radius:22px;padding:25px}
+.editor h2{font-size:42px}.field{margin:14px 0}.field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#dcaab4;margin-bottom:7px}
+input,textarea{width:100%;background:#12060b;border:1px solid #583044;color:#fff;border-radius:10px;padding:12px;font:14px Montserrat}textarea{min-height:110px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}.editor-note{font-size:12px;color:#bfa5aa;line-height:1.6}.close{float:right}
+.file{font-size:11px}.saved{color:#e8c58b;font-size:12px;opacity:0;transition:.3s}.saved.show{opacity:1}
+.music{display:none}
+@media(max-width:700px){.gallery,.plans{grid-template-columns:1fr}.photo{height:300px}.row{grid-template-columns:1fr}.card{padding:32px 18px}.letter{font-size:19px;padding:22px}.topbar{top:8px;right:8px}}
+</style>
+<style>
+:root{--rose:#f2a7bb;--gold:#ffdcc7;--wine:#a33359;--cream:#fff5ef}
+html,body{background:#48192c;color:var(--cream)}
+.bg{background:radial-gradient(ellipse at 15% 15%,#b35b77 0,transparent 55%),radial-gradient(ellipse at 85% 80%,#883451 0,transparent 60%),linear-gradient(135deg,#71314c,#401626)}
+.glow{background:#ffc1ce;opacity:.24}.glow.g2{background:#ef9caa}
+.card{background:rgba(91,30,53,.48);border-color:rgba(255,216,221,.25);box-shadow:0 25px 80px #32102155}
+.btn{background:linear-gradient(135deg,#cf6485,#9d3659);border-color:#f6baca;box-shadow:0 8px 25px #4b172b55}
+.btn.secondary{background:#642840b3}.btn:focus-visible{outline:3px solid #ffdcc7;outline-offset:4px}
+.gallery{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px 12px;padding:20px 8px}
+.photo{flex:0 1 29%;height:225px;border:6px solid #fff0e5;border-bottom-width:22px;border-radius:3px;box-shadow:0 12px 25px #260a2555;transform:rotate(var(--tilt,-5deg));background:#b96981}
+.photo:nth-child(3n+2){margin-top:40px;height:190px}.photo:nth-child(4n){margin-top:-15px}
+.photo .ph{color:#fff3eb;text-align:center}
+#s1{isolation:isolate;overflow:hidden;min-height:100svh;padding:110px 20px}
+#s1 .card{position:relative;z-index:2;width:min(760px,94vw);padding:48px 30px;background:radial-gradient(ellipse,#64243de8,#64243d9c 65%,#64243d33);border:0;box-shadow:none;backdrop-filter:blur(4px);border-radius:48%;text-shadow:0 2px 18px #401526}
+#s1 h1{font-size:clamp(64px,8vw,100px);line-height:1.04;color:#fff4ed}
+#s1 .lead{max-width:560px}#s1 .quote{color:#ffd8df}
+#gallery1{position:absolute;inset:0;z-index:0;display:block;max-width:none;margin:0;padding:0;pointer-events:none}
+#gallery1::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,#58213966 0,transparent 70%),linear-gradient(0deg,#48192c88,transparent 25%,transparent 75%,#48192c44)}
+#gallery1 .photo{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);margin:0;transform:translate(-50%,-50%) rotate(var(--tilt));opacity:.84;border-width:5px;border-bottom-width:18px;box-shadow:0 15px 40px #280d2955}
+.editor{background:#481c30;border-color:#ac5b79}input,textarea{background:#351323;border-color:#a55d77}
+.saved{max-width:520px;line-height:1.6}.saved.error{color:#ffd0d0}
+@media(max-width:700px){#s1{padding:100px 16px;min-height:900px;min-height:max(900px,100svh)}#s1 .card{padding:35px 12px}#gallery1 .photo{width:calc(var(--w) * 1.8);opacity:.65}.photo{flex-basis:43%;height:180px}.photo:nth-child(3n+2){height:155px}.gallery{gap:16px 10px}.photo .ph{font-size:16px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}canvas{display:none}}
+</style>
+<style>
+/* Each chapter occupies exactly the visible browser viewport. */
+:root{--ruby:#bd2946;--peach:#ffc7a3;--burgundy:#581529;--gold:#ffdbb5}
+html,body{height:100%;overflow:hidden}
+.screen,#s1{height:100vh;height:100dvh;min-height:0;padding:60px 16px 16px;overflow:hidden;isolation:isolate}
+.screen.active{animation:none}
+.screen .card,#s1 .card{position:relative;z-index:2;flex-shrink:0;width:min(900px,100%);max-width:100%;padding:22px 26px;border-radius:28px;transform:scale(var(--fit,1));background:rgba(83,28,49,.86);transform-origin:center;overflow-wrap:anywhere}
+#s1 .card{width:min(760px,100%);background:radial-gradient(ellipse,#64243deb,#64243db3 70%,#64243d66)}
+.screen .gallery{position:absolute;inset:0;z-index:0;display:block;max-width:none;margin:0;padding:0;pointer-events:none}
+.screen .gallery::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,#58213966,transparent 70%),linear-gradient(0deg,#48192c88,transparent 30%,#48192c44)}
+.screen .gallery .photo{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);margin:0;transform:translate(-50%,-50%) rotate(var(--tilt));opacity:.75;border-width:5px;border-bottom-width:18px}
+.screen h2{font-size:clamp(30px,5vw,48px);margin:4px 0 10px}
+#s1 h1{font-size:clamp(46px,8vw,90px)}
+.screen .lead{font-size:clamp(18px,2.5vw,24px);line-height:1.35;margin-bottom:14px}
+.screen .date{margin-bottom:16px}.screen .quote{font-size:28px;margin:14px 0}
+.screen .controls{margin-top:14px;gap:8px}
+.plans{margin:14px auto;gap:10px}.plan{padding:14px}.plan .icon{font-size:24px}.plan h3{font-size:24px}.plan p{line-height:1.45}
+#s3 .card{height:100%;max-height:760px;display:flex;flex-direction:column;min-height:0}
+#s3 .letter{flex:1;min-height:0;width:100%;max-width:760px;margin:8px auto;padding:12px 18px;overflow:hidden;font-size:clamp(17px,2.3vw,22px);line-height:1.5;white-space:pre-wrap}
+#s3 .card>*{flex-shrink:0}#s3 .letter{flex-shrink:1}
+.letter-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin:8px 0;font-size:11px;color:var(--gold)}
+#s3 .signature{font-size:30px;margin-top:6px}#s3 .final{font-size:23px}
+@media(max-width:700px){.screen,#s1{padding:50px 12px 12px}.screen .card,#s1 .card{padding:18px 16px}.screen .gallery .photo{width:calc(var(--w) * 1.8);opacity:.65}.plans{grid-template-columns:1fr;gap:8px}.plan{padding:10px 12px;text-align:left;display:grid;grid-template-columns:30px 1fr;column-gap:10px}.plan .icon{grid-row:1/3;align-self:center}.plan h3{margin:0 0 3px;font-size:21px}.plan p{font-size:12px}.screen .btn{padding:12px 16px;font-size:10px}.screen .eyebrow{letter-spacing:3px;font-size:10px}.screen .quote{font-size:25px;margin:10px 0}#s3 .letter{padding:10px 12px}#s3 .signature{font-size:26px}}
+@media(max-height:500px){.screen,#s1{padding-top:44px}.screen .card,#s1 .card{padding:10px 18px}.screen .eyebrow,.screen .heart{display:none}.screen h2{font-size:28px}.screen .controls{margin-top:8px}.plans{grid-template-columns:repeat(3,1fr)}.plan{display:block}.plan .icon{display:none}#s3 .signature{font-size:22px;margin:0}#s3 .final{font-size:18px}.letter-nav{margin:4px 0}}
+/* Rose, ruby and candlelight, with a different balance in each chapter. */
+#s1{background:radial-gradient(ellipse at 0% 15%,#cc748b99,transparent 55%),radial-gradient(ellipse at 100% 80%,#dc433e80,transparent 55%),linear-gradient(125deg,#71314c,#8d233d 52%,#48192c)}
+#s2{background:radial-gradient(ellipse at 95% 10%,#f2ab7866,transparent 55%),radial-gradient(ellipse at 5% 90%,#d54e6966,transparent 55%),linear-gradient(135deg,#541b35,#993c49 65%,#733049)}
+#s3{background:radial-gradient(ellipse at 10% 10%,#d9394f88,transparent 55%),radial-gradient(ellipse at 95% 90%,#c785a277,transparent 55%),linear-gradient(140deg,#741b30,#571c35 60%,#8d3f5c)}
+#s1 .card{background:linear-gradient(125deg,#74243b66,#64243d88 55%,#862c3866);box-shadow:0 22px 75px #3c102b44,inset 0 1px 0 #ffd1c533}
+#s2 .card{background:linear-gradient(135deg,#682a4077,#55233488 60%,#79383d66);border-color:#efbe9766}
+#s3 .card{background:linear-gradient(145deg,#701e3277,#50203988);border-color:#f2a7bb55}
+.screen .card,#s1 .card{backdrop-filter:none;text-shadow:0 2px 6px #260b20,0 0 18px #260b20}
+.screen .gallery::after,#gallery1::after{background:linear-gradient(0deg,#48192c44,transparent 30%,#48192c22)}
+.screen .gallery .photo{opacity:.92}
+@media(max-width:700px){.screen .gallery .photo{width:var(--w);opacity:.88}}
+.btn{background:linear-gradient(120deg,#b52b45,#94223a 55%,#a83b5e);border-color:#f2acb3;box-shadow:0 8px 25px #68132455}
+.btn:hover{box-shadow:0 10px 30px #ed627244;border-color:var(--peach)}
+.btn.secondary{background:linear-gradient(120deg,#713448e6,#552139e6);border-color:#e8abb866}
+.heart{color:#ff2946;text-shadow:0 0 24px #ff193b88}
+.plan:nth-child(1){background:linear-gradient(140deg,#b6374d55,#751d3433);border-color:#ef889866}
+.plan:nth-child(2){background:linear-gradient(140deg,#be805044,#85453533);border-color:#ecc19866}
+.plan:nth-child(3){background:linear-gradient(140deg,#b56f9855,#68345133);border-color:#dca8d066}
+.plan:nth-child(1) h3{color:#ffbdc5}.plan:nth-child(2) h3{color:#ffdbb5}.plan:nth-child(3) h3{color:#f8cde6}
+.screen .gallery .photo:nth-child(3n+1){background:linear-gradient(145deg,#c66c85,#94344f);border-color:#ffe5e5}
+.screen .gallery .photo:nth-child(3n+2){background:linear-gradient(145deg,#a83247,#6f2039);border-color:#f9d9bb}
+.screen .gallery .photo:nth-child(3n){background:linear-gradient(145deg,#bc836d,#934d65);border-color:#f4dce9}
+#s3 .letter{background:linear-gradient(125deg,#ffc7a312,#f2a7bb0a);border-color:#edb89d44}
+#s1 .quote,.screen .quote{color:#ffd2cc}.signature{color:var(--peach)}
+</style>
+<style>
+/* Keep heads in-frame before loading and preserve full collages. */
+.screen .gallery .photo img{object-fit:contain;background:#542238}
+.screen .gallery .photo{left:clamp(calc(var(--w) / 2 + 2%),var(--x),calc(98% - var(--w) / 2));top:clamp(calc(var(--h) / 2 + 3%),var(--y),calc(97% - var(--h) / 2))}
+</style>
+<style>
+#s2 .gallery .photo{border-width:3px;border-bottom-width:11px;box-shadow:0 7px 18px #280d2933}
+@media(max-width:700px){
+ #s2 .gallery .photo{left:var(--mobile-x);top:var(--mobile-y);width:19%;height:15%;border-width:2px;border-bottom-width:7px;transform:translate(-50%,-50%) rotate(var(--tilt))}
+}
+</style>
+<style>
+#s3 .card{height:auto;max-height:none;display:block;width:min(980px,100%);padding:clamp(24px,4vw,44px) clamp(20px,4vw,48px);background:linear-gradient(145deg,#701e3244,#50203955)}
+#s3 .letter{margin:0 auto;padding:0;width:100%;max-width:860px;overflow:visible;border:0;background:none;white-space:pre-line;text-align:center;font-family:'Caveat','Segoe Print','Bradley Hand',cursive;font-weight:500;font-size:clamp(36px,5.2vw,68px);line-height:1.25;letter-spacing:.2px;color:#fff0e5;text-wrap:balance}
+#s3 .controls{margin-top:30px}
+#s3 .letter-download{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;font-size:clamp(16px,1.6vw,20px);padding:17px 30px;letter-spacing:1px;text-transform:none}
+#s3 .back-controls{margin-top:20px}
+@media(max-height:500px){#s3 .card{padding:20px 28px}#s3 .letter{font-size:clamp(30px,4.3vw,42px)}#s3 .controls{margin-top:16px}}
+</style>
+<style>
+/* Keep the complete ten-year plan readable within the second chapter. */
+#s2 .card{height:100%;max-height:900px;min-height:0;display:flex;flex-direction:column;background:linear-gradient(135deg,#682a4033,#55233440 60%,#79383d26);text-shadow:0 2px 4px #260b20,0 0 8px #260b20}
+#s2 .gallery .photo{opacity:1}
+#s2 .gallery::after{background:none}
+#s2 .card>h2,#s2 .eyebrow,#s2 .controls{flex-shrink:0}
+#futureIntro:empty{display:none}
+#s2 .future-content{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-color:#efbe97 #552334;scrollbar-width:thin;padding:0 8px 8px}
+#s2 .future-content:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:12px}
+#s2 .plans{grid-template-columns:repeat(2,minmax(0,1fr));max-width:none;margin:10px 0 18px;gap:14px}
+#s2 .plan{display:block;text-align:left;padding:18px 20px;background:#46152666}
+#s2 .plan h3{font-size:26px;margin:0 0 10px;color:var(--gold)}
+#s2 .plan ul{margin:0;padding-left:18px;color:#fff0e5;font-size:14px;line-height:1.65}
+#s2 .plan li+li{margin-top:6px}
+#s2 .plan:nth-child(4){border-color:#ef889866}
+#s2 #quote2{font-family:'Cormorant Garamond',serif;font-size:23px;line-height:1.45;margin:12px auto 4px;max-width:760px}
+@media(max-width:700px){#s2 .plans{grid-template-columns:1fr}#s2 .plan{padding:16px}#s2 .plan h3{font-size:24px}#s2 #quote2{font-size:22px}}
+</style>
+<style>
+/* A full-window welcome, with no overlay blocking the story controls. */
+.welcome-balloons{position:fixed;inset:0;z-index:15;overflow:hidden;pointer-events:none}
+.welcome-balloon{position:absolute;left:var(--left);top:100%;width:clamp(48px,7vw,100px);aspect-ratio:4/5;border-radius:50% 50% 46% 46%;background:radial-gradient(ellipse at 30% 25%,#ffffffb3,transparent 24%),radial-gradient(ellipse at 35% 30%,var(--balloon-color) 35%,var(--balloon-shadow));box-shadow:inset -8px -10px 18px #57152933,0 8px 18px #260b2022;animation:balloon-rise var(--duration) var(--delay) ease-out both}
+.welcome-balloon::before{content:"";position:absolute;top:98%;left:calc(50% - 6px);border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:10px solid var(--balloon-color)}
+.welcome-balloon::after{content:"";position:absolute;top:calc(100% + 9px);left:50%;width:18px;height:clamp(70px,12vh,130px);border-left:1px solid #ffe8dad9;border-radius:50%;transform:rotate(-7deg);transform-origin:top}
+@keyframes balloon-rise{0%{transform:translate(-50%,20vh) rotate(-8deg)}45%{transform:translate(calc(-50% + var(--sway)), -60vh) rotate(7deg)}100%{transform:translate(-50%,calc(-100vh - 320px)) rotate(-5deg)}}
+@media(prefers-reduced-motion:reduce){.welcome-balloons{display:none}}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="glow"></div><div class="glow g2"></div><canvas id="hearts"></canvas>
+<div class="topbar"><button class="btn secondary small" onclick="openEditor()">✦ Edit</button><button class="btn secondary small" onclick="toggleMusic()">♫ Music</button></div>
+
+<section class="screen active" id="s1">
+<div class="gallery" id="gallery1" aria-label="Our memories"></div>
+<div class="card">
+<div class="eyebrow">A little journey through us</div>
+<div class="heart">♡</div>
+<h1 id="title1">Happy 10th Anniversary</h1>
+<div class="date" id="date1">October 15 • Ten beautiful years</div>
+<p class="lead" id="intro">Ten years, countless memories, and one person I would choose again and again.</p>
+<div class="quote" id="quote1">“You are my favorite chapter.”</div>
+<div class="controls"><button class="btn" id="next1" onclick="go(2)">Continue →</button></div>
+</div></section>
+
+<section class="screen" id="s2">
+<div class="gallery" id="gallery2" aria-label="Our memories"></div>
+<div class="card">
+<div class="eyebrow">Chapter Two</div>
+<h2 id="futureTitle">Our Next 10 Years Plan</h2>
+<p class="lead" id="futureIntro"></p>
+<div class="future-content" tabindex="0" role="region" aria-label="Our ten-year plan and promise">
+<div class="plans" id="plans"></div>
+
+<div class="quote" id="quote2"></div>
+</div>
+<div class="controls"><button class="btn secondary" onclick="go(1)">← Back</button><button class="btn" id="next2" onclick="go(3)">There is one more thing →</button></div>
+</div></section>
+
+<section class="screen" id="s3">
+<div class="gallery" id="gallery3" aria-label="Our memories"></div>
+<div class="card">
+<p class="letter" id="letter">I will always believe that starting this relationship with you is the best decision I have ever made in my life.
+
+Thank You For Your True Love Mage Manika...!!!</p>
+<div class="controls"><a class="btn letter-download" href="letter.pdf" download="My Letter to You.pdf" aria-label="Download the letter as a PDF">Download the Letter</a></div><div class="controls back-controls"><button class="btn secondary" onclick="go(2)">← Go back</button></div>
+</div></section>
+
+<div class="edit-panel" id="editor">
+<div class="editor">
+<button class="btn secondary small close" onclick="closeEditor()">Close</button>
+<h2>Edit Your Surprise</h2>
+<p class="editor-note">Everything is saved in this browser. Replace the sample text, upload your photos, then close this panel and preview the experience. The recipient does not need edit access unless you share this file with them before locking it down.</p>
+<div class="row">
+<div class="field"><label>Opening title</label><input id="e_title1"></div>
+<div class="field"><label>Anniversary date line</label><input id="e_date1"></div>
+</div>
+<div class="field"><label>Opening message</label><textarea id="e_intro"></textarea></div>
+<div class="field"><label>Opening quote</label><input id="e_quote1"></div>
+<div class="field"><label>Future chapter title</label><input id="e_futureTitle"></div>
+<div class="field"><label>Future chapter message</label><textarea id="e_futureIntro"></textarea></div>
+<div class="row">
+<div class="field"><label>Plan 1 title</label><input id="e_p1t"></div>
+<div class="field"><label>Plan 1 description</label><textarea id="e_p1d"></textarea></div>
+</div>
+<div class="row">
+<div class="field"><label>Plan 2 title</label><input id="e_p2t"></div>
+<div class="field"><label>Plan 2 description</label><textarea id="e_p2d"></textarea></div>
+</div>
+<div class="row">
+<div class="field"><label>Plan 3 title</label><input id="e_p3t"></div>
+<div class="field"><label>Plan 3 description</label><textarea id="e_p3d"></textarea></div>
+</div>
+<div class="row">
+<div class="field"><label>Plan 4 title</label><input id="e_p4t"></div>
+<div class="field"><label>Plan 4 description (one goal per line)</label><textarea id="e_p4d"></textarea></div>
+</div>
+<div class="field"><label>Future quote</label><input id="e_quote2"></div>
+<div class="field"><label>Your closing message</label><textarea id="e_closingMessage"></textarea></div>
+<h3>Photos</h3>
+<p class="editor-note">Your 34 included photos are split between Chapters 1 and 2 (17 each). Each chapter holds up to 18 photos, including the included photos. New selections add to the background and are resized and saved only in this browser.</p>
+<div class="row">
+<div class="field"><label>Chapter 1 photos</label><input class="file" type="file" accept="image/*" multiple id="files1"></div>
+<div class="field"><label>Chapter 2 photos</label><input class="file" type="file" accept="image/*" multiple id="files2"></div>
+</div>
+<div class="field"><label>Chapter 3 photos</label><input class="file" type="file" accept="image/*" multiple id="files3"></div>
+<div class="controls"><button class="btn" onclick="saveAll()">Save Changes</button><span class="saved" id="saved">Saved ✓</span></div>
+</div></div>
+
+<audio id="music" loop>
+<!-- Add your own MP3 file as music.mp3 beside this HTML and it will play when enabled. -->
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const defaults={
+title1:"Happy 10th Anniversary",date1:"October 15 • Ten beautiful years",
+intro:"Ten years, countless memories, and one person I would choose again and again.",
+quote1:"“You are my favorite chapter.”",
+futureTitle:"Our Next 10 Years Plan",
+futureIntro:"",
+p1t:"2026 Oct – 2029 Oct",
+p1d:"You study well and earn your Pharmacist license.\nI study well and earn my MSc.\nI find a new job.\nYou find a new job or a better salary.\nGet our bike.\nYou complete your BIT degree, or start another degree you would love to do.",
+p2t:"2029 Oct – 2031 Oct",
+p2d:"Our marriage and wedding.\nTravel together around Sri Lanka, which I would love to do with you.\nGet our first car.\nMove on to our third jobs, with promotions.\nExpand our cake business.",
+p3t:"2031 Oct – 2034 Oct",
+p3d:"Welcome our child into the world.\nBuy our land and begin building our home.\nComplete our parents’ houses as well.",
+p4t:"2034 Oct – 2036 Oct",
+p4d:"Travel abroad together, beyond Sri Lanka (Thailand, Maldives, Europe).\nGet our fourth jobs.\nGet our second car.",
+quote2:"At every stage, I will try my best, not only to earn money, but also to keep our relationship healthy and full of love. I love you, mage raththaran. Let’s win this life together. 💛",
+closingMessage:"I will always believe that starting this relationship with you is the best decision I have ever made in my life.\n\nThank You For Your True Love Mage Manika...!!!"
+};
+let data={...defaults,...JSON.parse(localStorage.getItem("anniversaryData")||"null")};
+// Upgrade only the future chapter from the original three sample plans.
+if(data.futurePlanVersion!==1){
+ for(const key of ["futureTitle", "futureIntro", "p1t", "p1d", "p2t", "p2d", "p3t", "p3d", "p4t", "p4d", "quote2"])data[key]=defaults[key];
+ data.futurePlanVersion=1;
+}
+if(data.closingMessage==="I will always believe that starting this relationship with you is the best decision I have ever made in my life.")data.closingMessage=defaults.closingMessage;
+let photos=JSON.parse(localStorage.getItem("anniversaryPhotos")||"null")||{1:[],2:[],3:[]};
+const bundledPhotos={
+  "1": [
+    "Photos/2020-12-30-17-50-58-956.jpg",
+    "Photos/2023-01-04-16-48-36-586.jpg",
+    "Photos/DSC05824.jpg",
+    "Photos/DSC05892.jpg",
+    "Photos/IMG-20221017-WA0002.jpg",
+    "Photos/IMG-20230520-WA0122.jpg",
+    "Photos/IMG-20230527-WA0085.jpg",
+    "Photos/IMG-20230529-WA0071.jpg",
+    "Photos/IMG-20230611-WA0074.jpg",
+    "Photos/IMG-20230611-WA0086.jpg",
+    "Photos/IMG-20230618-WA0071.jpg",
+    "Photos/IMG-20230704-WA0019.jpg",
+    "Photos/IMG-20230818-WA0011.jpg",
+    "Photos/IMG-20230929-WA0012.jpg",
+    "Photos/IMG-20231208-WA0023.jpg",
+    "Photos/IMG-20240317-WA0027.jpg",
+    "Photos/IMG-20240916-WA0019.jpg"
+  ],
+  "2": [
+    "Photos/IMG-20241224-WA0025.jpg",
+    "Photos/IMG-20250212-WA0021.jpg",
+    "Photos/IMG-20250401-WA0019.jpg",
+    "Photos/IMG-20250519-WA0103.jpg",
+    "Photos/IMG-20250703-WA0165.jpg",
+    "Photos/IMG-20250707-WA0038.jpg",
+    "Photos/IMG-20251023-WA0026.jpg",
+    "Photos/IMG-20251023-WA0029.jpg",
+    "Photos/IMG-20251027-WA0016.jpg",
+    "Photos/IMG_20201122_161038_861.jpg",
+    "Photos/IMG_20201209_191027_984.jpg",
+    "Photos/IMG_20210320_204827_350.jpg",
+    "Photos/SDB_1042.jpg",
+    "Photos/Screenshot_20210702_014337.jpg",
+    "Photos/Screenshot_20210702_014402.jpg",
+    "Photos/Snapchat-2035538615.jpg",
+    "Photos/WhatsApp%20Image%202025-09-04%20at%2010.39.07.jpeg"
+  ],
+  "3": []
+};
+function chapterPhotos(n){return [...new Set([...bundledPhotos[n],...(photos[n]||[])])].slice(0,18)}
+// Face bounds measured from the bundled photos; originals remain untouched.
+const photoFraming={"Photos/2020-12-30-17-50-58-956.jpg":{"bounds":[0.24522000000000002,0.06445000000000001,0.77438,0.37294],"full":false},"Photos/2023-01-04-16-48-36-586.jpg":{"bounds":[0.20194,0.18645,1,0.61186],"full":false},"Photos/DSC05824.jpg":{"bounds":[0.38513,0.22139999999999999,0.71477,0.45112],"full":false},"Photos/DSC05892.jpg":{"bounds":[0.26046,0.20279999999999998,0.6954199999999999,0.49973999999999996],"full":false},"Photos/IMG-20221017-WA0002.jpg":{"bounds":[0.31395,0.14625000000000002,1,0.65182],"full":false},"Photos/IMG-20230520-WA0122.jpg":{"bounds":[0.06965,0,0.9561000000000001,0.6686799999999999],"full":false},"Photos/IMG-20230527-WA0085.jpg":{"bounds":[0.07891000000000002,0,0.88584,0.70074],"full":false},"Photos/IMG-20230529-WA0071.jpg":{"bounds":[0,0,0.84314,0.6792199999999999],"full":false},"Photos/IMG-20230611-WA0074.jpg":{"bounds":[0.42715,0.24339999999999998,0.90818,0.6282800000000001],"full":false},"Photos/IMG-20230611-WA0086.jpg":{"bounds":[0.34778000000000003,0.06375,0.83762,0.38454],"full":false},"Photos/IMG-20230618-WA0071.jpg":{"bounds":[0.35448999999999997,0,1,0.8760600000000001],"full":false},"Photos/IMG-20230704-WA0019.jpg":{"bounds":[0.27541,0.37665000000000004,0.49466,0.58588],"full":false},"Photos/IMG-20230818-WA0011.jpg":{"bounds":[0.24053,0.13305,0.57286,0.4075],"full":false},"Photos/IMG-20230929-WA0012.jpg":{"bounds":[0.21261999999999998,0.17504999999999998,1,0.72054],"full":false},"Photos/IMG-20231208-WA0023.jpg":{"bounds":[0.19777,0,1,0.71398],"full":false},"Photos/IMG-20240317-WA0027.jpg":{"bounds":[0,0,1,0.49407999999999996],"full":false},"Photos/IMG-20240916-WA0019.jpg":{"bounds":[0.15994999999999998,0.44384999999999997,0.5799500000000001,0.72714],"full":true},"Photos/IMG-20241224-WA0025.jpg":{"bounds":[0.18468,0.07829999999999998,1,0.6472],"full":false},"Photos/IMG-20250212-WA0021.jpg":{"bounds":[0.22799999999999998,0.11564999999999998,1,0.6520199999999999],"full":false},"Photos/IMG-20250401-WA0019.jpg":{"bounds":[0.26680000000000004,0.07429999999999999,0.8219400000000001,0.42428],"full":false},"Photos/IMG-20250519-WA0103.jpg":{"bounds":[0.04248999999999999,0,0.79657,0.84304],"full":true},"Photos/IMG-20250703-WA0165.jpg":{"bounds":[0.2827,0.36210000000000003,0.70001,0.63194],"full":false},"Photos/IMG-20250707-WA0038.jpg":{"bounds":[0.15188000000000001,0.07020000000000001,0.99888,0.65654],"full":false},"Photos/IMG-20251023-WA0026.jpg":{"bounds":[0.20093,0.15039999999999998,0.5943700000000001,0.48214],"full":false},"Photos/IMG-20251023-WA0029.jpg":{"bounds":[0.11384,0.1361,0.63736,0.59514],"full":false},"Photos/IMG-20251027-WA0016.jpg":{"bounds":[0,0.013850000000000001,1,0.7816],"full":false},"Photos/IMG_20201122_161038_861.jpg":{"bounds":[0.12536,0.020750000000000005,0.8351,0.7985199999999999],"full":true},"Photos/IMG_20201209_191027_984.jpg":{"bounds":[0.07876000000000001,0.0296,0.97886,0.49829999999999997],"full":true},"Photos/IMG_20210320_204827_350.jpg":{"bounds":[0,0,0.61614,0.74722],"full":true},"Photos/Screenshot_20210702_014337.jpg":{"bounds":[0,0,1,1],"full":true},"Photos/Screenshot_20210702_014402.jpg":{"bounds":[0.13992,0.032549999999999996,0.5376799999999999,0.61946],"full":false},"Photos/SDB_1042.jpg":{"bounds":[0.34104999999999996,0.20765,0.66256,0.39805999999999997],"full":false},"Photos/Snapchat-2035538615.jpg":{"bounds":[0.22746999999999998,0.15405000000000002,0.8144499999999999,0.43062],"full":false},"Photos/WhatsApp%20Image%202025-09-04%20at%2010.39.07.jpeg":{"bounds":[0.28282,0.19685000000000002,0.9274399999999999,0.50284],"full":false}};
+function photoCrop(framing,iw,ih,cw,ch){
+ if(!framing||framing.full)return {fit:'contain',x:50,y:50};
+ const scale=Math.max(cw/iw,ch/ih),vw=cw/(iw*scale),vh=ch/(ih*scale);
+ const [left,top,right,bottom]=framing.bounds;
+ if(right-left>vw||bottom-top>vh)return {fit:'contain',x:50,y:50};
+ const axis=(a,b,visible)=>visible>=1-1e-9?50:100*Math.max(0,Math.min(1-visible,(a+b-visible)/2))/(1-visible);
+ return {fit:'cover',x:axis(left,right,vw),y:axis(top,bottom,vh)};
+}
+function positionPhoto(img){
+ if(!img.naturalWidth||!img.clientWidth||!img.clientHeight)return;
+ const crop=photoCrop(photoFraming[img.getAttribute('src')],img.naturalWidth,img.naturalHeight,img.clientWidth,img.clientHeight);
+ img.style.objectFit=crop.fit;
+ img.style.objectPosition=crop.x+'% '+crop.y+'%';
+}
+
+
+function render(){
+for(const k of Object.keys(defaults)){const el=document.getElementById(k);if(el)el.textContent=data[k]}
+document.getElementById("letter").textContent=data.closingMessage;
+document.getElementById("plans").innerHTML=[1,2,3,4].map(n=>
+`<article class="plan"><h3>${esc(data['p'+n+'t'])}</h3><ul>${data['p'+n+'d'].split('\n').filter(line=>line.trim()).map(line=>`<li>${esc(line)}</li>`).join('')}</ul></article>`).join("");
+[1,2,3].forEach(n=>{
+const items=chapterPhotos(n);
+// Overlapping prints cover the edges AND the middle of every chapter.
+const positions=[[7,12,25,42,-9],[26,18,24,43,7],[45,12,25,42,-5],[64,17,25,43,9],[83,12,24,42,-8],[101,18,25,43,5],[3,49,25,43,6],[22,53,25,44,-8],[42,48,26,43,5],[62,53,25,44,-7],[81,48,25,43,8],[100,54,25,44,-6],[7,88,25,43,-7],[27,91,25,44,9],[46,87,25,43,-6],[65,92,25,44,7],[84,88,25,43,-9],[103,92,25,44,6]];
+const count=items.length||(n===1?positions.length:0);
+document.getElementById("gallery"+n).innerHTML=Array.from({length:count},(_,i)=>{
+let [x,y,w,h,tilt]=positions[i];
+// Smaller prints and generous gaps give Chapter Two a quieter backdrop.
+if(n===2){
+ const row=Math.floor(i/6),col=i%6,rowCount=Math.min(6,count-row*6);
+ x=50+(col-(rowCount-1)/2)*16; y=18+row*32; w=13; h=24; tilt=i%2===0?-3:3;
+}
+const mobileRow=Math.floor(i/4),mobileCol=i%4,mobileCount=Math.min(4,count-mobileRow*4);
+const style=`--x:${x}%;--y:${y}%;--w:${w}%;--h:${h}%;--tilt:${tilt}deg;--mobile-x:${50+(mobileCol-(mobileCount-1)/2)*24}%;--mobile-y:${12+mobileRow*19}%`;
+const photo=items[i%items.length];
+return `<div class="photo" style="${style}">${photo?`<img src="${esc(photo)}" onload="positionPhoto(this)" alt="${i<items.length?'Our memory '+(i+1):''}" ${n===1?'':'loading="lazy"'}>`:'<div class="ph">A little memory &hearts;</div>'}</div>`;
+}).join("");
+});
+requestAnimationFrame(layoutScreen);
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function go(n){document.getElementById("welcomeBalloons")?.remove();document.querySelectorAll(".screen").forEach(x=>x.classList.remove("active"));document.getElementById("s"+n).classList.add("active");layoutScreen()}
+function openEditor(){
+const map={title1:"e_title1",date1:"e_date1",intro:"e_intro",quote1:"e_quote1",futureTitle:"e_futureTitle",futureIntro:"e_futureIntro",p1t:"e_p1t",p1d:"e_p1d",p2t:"e_p2t",p2d:"e_p2d",p3t:"e_p3t",p3d:"e_p3d",p4t:"e_p4t",p4d:"e_p4d",quote2:"e_quote2",closingMessage:"e_closingMessage"};
+for(const k in map)document.getElementById(map[k]).value=data[k];
+document.getElementById("editor").classList.add("open");
+}
+function closeEditor(){document.getElementById("editor").classList.remove("open")}
+function readFields(){
+const map={title1:"e_title1",date1:"e_date1",intro:"e_intro",quote1:"e_quote1",futureTitle:"e_futureTitle",futureIntro:"e_futureIntro",p1t:"e_p1t",p1d:"e_p1d",p2t:"e_p2t",p2d:"e_p2d",p3t:"e_p3t",p3d:"e_p3d",p4t:"e_p4t",p4d:"e_p4d",quote2:"e_quote2",closingMessage:"e_closingMessage"};
+for(const k in map)data[k]=document.getElementById(map[k]).value;
+}
+async function saveFiles(id,n){
+const files=[...document.getElementById(id).files];
+if(!files.length)return photos[n]||[];
+if(files.length+chapterPhotos(n).length>18)throw new Error(`Chapter ${n} can hold 18 photos. Choose fewer photos to add.`);
+const added=[];
+for(const file of files){
+const url=URL.createObjectURL(file);
+try{
+const img=new Image();img.src=url;await img.decode();
+const scale=Math.min(1,900/Math.max(img.width,img.height));
+const surface=document.createElement("canvas");surface.width=Math.round(img.width*scale);surface.height=Math.round(img.height*scale);
+const context=surface.getContext("2d");context.fillStyle="#fff0e5";context.fillRect(0,0,surface.width,surface.height);context.drawImage(img,0,0,surface.width,surface.height);
+added.push(surface.toDataURL("image/jpeg",.72));
+}catch(error){throw new Error(`Could not read ${file.name}. Please choose a JPG, PNG or WebP photo.`)}finally{URL.revokeObjectURL(url)}
+}
+return [...(photos[n]||[]),...added];
+}
+let saving=false;
+async function saveAll(){
+if(saving)return;saving=true;
+const status=document.getElementById("saved");status.setAttribute("role","status");status.classList.remove("error");status.textContent="Saving your memories?";status.classList.add("show");
+const previousData={...data};
+try{
+readFields();
+const result=await Promise.all([saveFiles("files1",1),saveFiles("files2",2),saveFiles("files3",3)]);
+const nextPhotos={1:result[0],2:result[1],3:result[2]};
+localStorage.setItem("anniversaryPhotos",JSON.stringify(nextPhotos));
+photos=nextPhotos;
+localStorage.setItem("anniversaryData",JSON.stringify(data));
+[1,2,3].forEach(n=>document.getElementById("files"+n).value="");render();status.textContent="Saved ?";
+}catch(error){data=previousData;status.classList.add("error");status.textContent=error.name==="QuotaExceededError"?"This browser's storage is full. Try adding fewer photos at a time.":error.message;
+}finally{saving=false}
+}
+function toggleMusic(){const a=document.getElementById("music");a.paused?a.play().catch(()=>alert("Add a file named music.mp3 beside index.html, then try again.")):a.pause()}
+
+
+function layoutScreen(){
+ const screen=document.querySelector(".screen.active");if(!screen)return;
+ screen.querySelectorAll(".photo img").forEach(positionPhoto);
+ const card=screen.querySelector(".card");card.style.setProperty("--fit",1);
+ const style=getComputedStyle(screen);
+ const available=screen.clientHeight-parseFloat(style.paddingTop)-parseFloat(style.paddingBottom);
+ card.style.setProperty("--fit",Math.min(1,available/card.offsetHeight));
+}
+addEventListener("resize",()=>requestAnimationFrame(layoutScreen));
+if(window.visualViewport)window.visualViewport.addEventListener("resize",()=>requestAnimationFrame(layoutScreen));
+if(document.fonts)document.fonts.ready.then(layoutScreen);
+
+// floating hearts
+const c=document.getElementById("hearts"),ctx=c.getContext("2d");let hs=[];
+function resize(){
+c.width=innerWidth;c.height=innerHeight;
+const colors=["#ff2442","#ef1235","#ff87ab","#ff3b47","#ffc1d4","#f96b91"];
+hs=Array.from({length:innerWidth<700?100:180},(_,i)=>({x:Math.random()*c.width,y:Math.random()*c.height,s:i%9===0?32+Math.random()*16:9+Math.random()*20,v:14+Math.random()*32,a:Math.random()*Math.PI*2,sway:10+Math.random()*25,color:colors[Math.floor(Math.random()*colors.length)],outline:i%4===0,glow:i%9===0}));
+}addEventListener("resize",resize);resize();
+let lastHeartFrame=0;
+const reducedHearts=matchMedia("(prefers-reduced-motion: reduce)");
+function draw(time){
+const dt=lastHeartFrame?Math.min((time-lastHeartFrame)/1000,.05):0;lastHeartFrame=time;
+ctx.clearRect(0,0,c.width,c.height);
+if(!reducedHearts.matches)hs.forEach(h=>{
+h.y-=h.v*dt;h.a+=dt*.9;
+if(h.y<-h.s){h.y=c.height+h.s;h.x=Math.random()*c.width}
+ctx.globalAlpha=(h.glow?.18:.28)+.18*(1+Math.sin(h.a))/2;
+ctx.font=h.s+"px serif";ctx.fillStyle=h.color;
+ctx.shadowColor=h.color;ctx.shadowBlur=h.glow?12:0;
+ctx.fillText(h.outline?"♡":"♥",h.x+Math.sin(h.a)*h.sway,h.y);
+});
+ctx.shadowBlur=0;ctx.globalAlpha=1;
+requestAnimationFrame(draw);
+}requestAnimationFrame(draw);
+render();
+// Play once per visit; returning to the first chapter does not replay it.
+function welcomeBalloons(){
+ if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+ const layer=document.createElement("div");
+ layer.id="welcomeBalloons";layer.className="welcome-balloons";
+ layer.setAttribute("aria-hidden","true");
+ const palette=[["#fa7196","#a92350"],["#ffd397","#c58a48"],["#ed3556","#9b1939"],["#f6b6cf","#ad557a"]];
+ const count=innerWidth<700?24:40;
+ for(let i=0;i<count;i++){
+  const balloon=document.createElement("span");balloon.className="welcome-balloon";
+  const [color,shadow]=palette[i%palette.length];
+  balloon.style.cssText=`--left:${(i+.5)/count*100}%;--balloon-color:${color};--balloon-shadow:${shadow};--duration:${5+Math.random()*1.5}s;--delay:${Math.random()*1.6}s;--sway:${Math.random()*60-30}px`;
+  layer.appendChild(balloon);
+ }
+ document.body.appendChild(layer);
+ setTimeout(()=>layer.remove(),8500);
+}
+welcomeBalloons();
+</script>
+</body>
+</html>
