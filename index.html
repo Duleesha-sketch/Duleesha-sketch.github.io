@@ -349,6 +349,13 @@ function positionPhoto(img){
 function render(){
 data.title1=data.title1.replace(/\banniversary\b/gi,"Anniversary");
 for(const k of Object.keys(defaults)){const el=document.getElementById(k);if(el)el.textContent=data[k]}
+// Give Anniversary a clearly recognizable capital A within the script title.
+const title=document.getElementById("title1"),anniversaryIndex=data.title1.indexOf("Anniversary");
+if(anniversaryIndex!==-1){
+ const initial=document.createElement("span");initial.textContent="A";
+ initial.style.fontFamily="'Cormorant Garamond',serif";initial.style.fontStyle="italic";
+ title.replaceChildren(document.createTextNode(data.title1.slice(0,anniversaryIndex)),initial,document.createTextNode(data.title1.slice(anniversaryIndex+1)));
+}
 document.getElementById("letter").textContent=data.closingMessage;
 document.getElementById("plans").innerHTML=[1,2,3,4].map(n=>
 `<article class="plan"><h3>${esc(data['p'+n+'t'])}</h3><ul>${data['p'+n+'d'].split('\n').filter(line=>line.trim()).map(line=>`<li>${esc(line)}</li>`).join('')}</ul></article>`).join("");
