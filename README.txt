@@ -1,6 +1,6 @@
 # Our 10th Anniversary ❤️
 
-Open `index.html` in a browser. The 34 photos in `Photos` appear automatically in the backgrounds: 17 on the first page and 17 on the second. Keep the `Photos` folder beside `index.html` when copying or hosting the website.
+Open `index.html` in a browser. The 35 photos in `Photos` appear automatically in the backgrounds: 18 on the first page and 17 on the second. Keep the `Photos` folder beside `index.html` when copying or hosting the website.
 
 ## Personalize
 1. Click **✦ Edit**.
@@ -17,4 +17,4 @@ Personalized text and photos stay in your browser; copying index.html does not i
 
 
 ## Downloadable letter
-Place your letter PDF beside index.html and name it letter.pdf. The final screen includes a Download link for this file. Include letter.pdf when copying or hosting the website.
+Place your letter PDF beside index.html and name it Letter.pdf. The final screen includes a Download link for this file. Include Letter.pdf when copying or hosting the website.
